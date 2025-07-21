@@ -1,0 +1,105 @@
+<div class="container-fluid px-4 mt-4">
+
+    <!-- Header -->
+
+
+    <!-- Stats & Add Button -->
+    <div class="card bg-gradient-purple text-white p-3 mb-4 shadow-sm rounded-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Total Clients</h5>
+                <h3>{{ paymentList.length }}</h3>
+            </div>
+            <div>
+                <button class="btn btn-light fw-semibold text-primary" (click)="openAddPaymentModal()">
+                    + Add Payment
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-dark">Project Payment Management</h2>
+        <div>
+            <input type="text" placeholder="Search" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    <!-- Client Cards -->
+
+    <div class="row g-4">
+        <div class="col-md-4" *ngFor="let payment of paymentList">
+            <div class="card emp-card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="avatar-circle">
+                            {{ payment.companyName.charAt(0) }}
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold text-primary mb-0">{{ payment.projectName }}</h5>
+                            <!-- <small class="text-muted">{{ payment.amount }}</small> -->
+                        </div>
+                    </div>
+                    <p><strong>Amount:</strong> {{ payment.amount }}</p>
+                    <p><strong>Payment Date:</strong> {{ payment.paymentDate |date}}</p>
+                    <p><strong>Payment Mode:</strong> {{ payment.paymentMode }}</p>
+                    <p><strong>Naration:</strong> {{ payment.naration }}</p>
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-sm btn-warning" (click)="openEditPaymentModal(payment)">
+                            <i class="bi bi-pencil-fill">Edit</i>
+                        </button>
+
+                        <button class="btn btn-sm btn-danger" (click)="onDelete(payment.projectPaymentId)">
+                            <i class="bi bi-trash-fill">Delete</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div #paymentModal class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Project Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form [formGroup]="paymentForm"  (ngSubmit)="onSubmit()">
+                <div class="modal-body row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Payment Mode</label>
+                        <select class="form-select" formControlName="paymentMode">
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="online">Online</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Payment Date</label>
+                        <input type="date" class="form-control" formControlName="paymentDate" />
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="form-control" formControlName="amount" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Narration</label>
+                        <textarea class="form-control" formControlName="naration" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save Payment</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

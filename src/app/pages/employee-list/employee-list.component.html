@@ -1,0 +1,220 @@
+<div class="container-fluid px-4 mt-4">
+
+
+    <!-- Total Employees -->
+    <div class="card mb-3 p-3 bg-gradient-purple text-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h5>Total Employees</h5>
+                <h3>{{ EmpList.length }}</h3>
+            </div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+                Add New
+            </button>
+        </div>
+    </div>
+
+    <!--  Tabs -->
+    <app-tabs [tabs]="['Basic Info' , 'Family Data','Contact Details']" [activeTab]="currentTab"
+        (tabChange)="handleTabChange($event)"></app-tabs>
+
+    <div class="mt-4">
+        <ng-container [ngSwitch]="currentTab">
+            <div *ngSwitchCase="'Overview'">Overview content</div>
+            <div *ngSwitchCase="'Reports'">Reports content</div>
+            <div *ngSwitchCase="'Settings'">Settings content</div>
+        </ng-container>
+    </div>
+
+    <!-- <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#basic" type="button">Basic
+                Info</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#family" type="button">Family Data</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact" type="button">Contact
+                Details</button>
+        </li>
+    </ul> -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-dark">Employee Management</h2>
+        <div>
+            <input type="text" placeholder="Search" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="basic">
+            <div class="row g-3">
+                <div class="col-md-4" *ngFor="let emp of EmpList">
+                    <div class="card emp-card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar">{{ emp.empName.charAt(0).toUpperCase() }}</div>
+                                <div class="ms-3">
+                                    <h5 class="mb-0 fw-bold">{{ emp.empName }}</h5>
+                                    <p class="text-primary m-0">{{ emp.empDesignation }}</p>
+                                </div>
+                            </div>
+                            <p><strong>Code:</strong> {{ emp.empCode }}</p>
+                            <p><strong>Email:</strong> {{ emp.empEmailId }}</p>
+                            <p><strong>Role:</strong> <span class="badge bg-success text-uppercase">{{ emp.role
+                                    }}</span></p>
+                            <div class="text-center mt-3">
+                                <!-- <button class="btn btn-warning btn-sm me-2">
+                                    <i class="bi bi-pencil-square me-1"></i> Edit
+                                </button> -->
+                                <button class="btn btn-warning btn-sm me-2" (click)="onEdit(emp)" data-bs-toggle="modal"
+                                    data-bs-target="#addEmployeeModal">
+                                    <i class="bi bi-pencil-square me-1"></i> Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-sm" (click)="deleteEmployee(emp.empId)">
+                                    <i class="bi bi-trash-fill me-1"></i> Delete
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="family">
+            <p class="text-center text-muted">Family Data will appear here...</p>
+        </div>
+
+        <div class="tab-pane fade" id="contact">
+            <p class="text-center text-muted">Contact Details will appear here...</p>
+        </div>
+    </div>
+</div>
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="addEmployeeModalLabel">Add New Employee</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                    <!-- Basic Info -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Employee Name</label>
+                            <input formControlName="empName" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">userName</label>
+                            <input formControlName="userName" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Password</label>
+                            <input formControlName="password" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input formControlName="empEmailId" type="email" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Contact No</label>
+                            <input formControlName="empContactNo" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">City</label>
+                            <input formControlName="empCity" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Select Role</label>
+                            <select formControlName="roleId" class="form-select">
+                                <option>Select Role</option>
+                                <option *ngFor="let item of roleList" [value]="item.roleId">{{item.role}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Select Designation</label>
+                            <select class="form-select" formControlName="empDesignationId" name="designation">
+                                <option>Select Designation</option>
+                                <option *ngFor="let item of designationList" [value]="item.designationId">
+                                    {{ item.designation }}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- Skills Section -->
+                    <hr class="my-3" />
+                    <h5 class="text-secondary">Skills</h5>
+                    <div formArrayName="ErpEmployeeSkills">
+                        <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i"
+                            class="row g-2 align-items-end mb-2">
+                            <div class="col-md-4">
+                                <label class="form-label">Skill</label>
+                                <input formControlName="skill" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Experience (Years)</label>
+                                <input formControlName="totalYearExp" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Last Version Used</label>
+                                <input formControlName="lastVersionUsed" class="form-control" />
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" (click)="removeSkill(i)"
+                                    *ngIf="skills.length > 1">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="addSkill()">+ Add
+                            Skill</button>
+                    </div>
+
+                    <!-- Experience Section -->
+                    <hr class="my-3" />
+                    <h5 class="text-secondary">Experience</h5>
+                    <div formArrayName="ErmEmpExperiences">
+                        <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i"
+                            class="row g-2 align-items-end mb-2">
+                            <div class="col-md-4">
+                                <label class="form-label">Company Name</label>
+                                <input formControlName="companyName" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Designation</label>
+                                <input formControlName="designation" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Projects</label>
+                                <input formControlName="projectsWorkedOn" class="form-control" />
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" (click)="removeExperience(i)"
+                                    *ngIf="experiences.length > 1">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="addExperience()">+
+                            Add Experience</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid"
+                    (click)="onSubmit()">Save Employee</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="container-fluid px-4 mt-4">
+  <!-- Welcome Banner -->
+  <div class="card shadow-sm mb-4 border-0 gradient-welcome text-white p-4 rounded-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h4 class="fw-bold">Welcome, Admin 👋</h4>
+        <p class="mb-0">Today is <span class="fw-semibold">{{ currentDate }}</span>, <span class="fw-semibold">{{
+            currentTime }}</span></p>
+      </div>
+      <i class="bi bi-person-circle fs-1"></i>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row g-4">
+
+    <div class="col-md-6 col-xl-3" *ngIf="roleList">
+      <div class="card dashboard-card gradient-blue text-white rounded-4 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6 class="fw-semibold mb-1">Roles</h6>
+              <h3>{{ roleList.length }}</h3>
+            </div>
+            <i class="bi bi-person-badge fs-2"></i>
+          </div>
+          <p class="small mb-0">User roles in system</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3" *ngIf="desiganationList">
+      <div class="card dashboard-card gradient-purple text-white rounded-4 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6 class="fw-semibold mb-1">Designations</h6>
+              <h3>{{ desiganationList.length }}</h3>
+            </div>
+            <i class="bi bi-person-vcard fs-2"></i>
+          </div>
+          <p class="small mb-0">Job titles in organization</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3" *ngIf="employeeList">
+      <div class="card dashboard-card gradient-orange text-white rounded-4 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6 class="fw-semibold mb-1">Employees</h6>
+              <h3>{{ employeeList.length }}</h3>
+            </div>
+            <i class="bi bi-people-fill fs-2"></i>
+          </div>
+          <p class="small mb-0">Active employees</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3" *ngIf="clientList">
+      <div class="card dashboard-card gradient-teal text-white rounded-4 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6 class="fw-semibold mb-1">Clients</h6>
+              <h3>{{ clientList.length }}</h3>
+            </div>
+            <i class="bi bi-building fs-2"></i>
+          </div>
+          <p class="small mb-0">Registered clients</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3" *ngIf="meetingList">
+      <div class="card dashboard-card gradient-dark text-white rounded-4 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6 class="fw-semibold mb-1">Meetings</h6>
+              <h3>{{ meetingList.length }}</h3>
+            </div>
+            <i class="bi bi-calendar-event fs-2"></i>
+          </div>
+          <p class="small mb-0">Scheduled meetings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bar Chart -->
+  <div class="card mt-5 shadow-sm border-0 rounded-4">
+    <div class="card-body">
+      <h5 class="fw-bold mb-3 text-primary">System Overview</h5>
+      <canvas #barChartCanvas height="100"></canvas>
+    </div>
+  </div>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-3" *ngFor="let action of quickActions">
+    <a class="card quick-tile p-3 text-decoration-none text-white shadow-sm rounded-4 d-block text-center"
+      [ngClass]="action.color">
+      <i [class]="action.icon + ' fs-2 mb-2'"></i>
+      <h6 class="fw-semibold mb-0">{{ action.label }}</h6>
+    </a>
+  </div>
+</div>
+<!-- Sample Bar Chart Card -->
+<div class="col-12 col-xl-6">
+  <div class="card shadow-sm border-0 p-3 rounded-4">
+    <h6 class="fw-bold mb-3">Employee Distribution</h6>
+    <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'">
+    </canvas>
+  </div>
+</div>

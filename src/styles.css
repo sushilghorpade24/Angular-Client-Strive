@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+ /* Make sure this is LAST */
+.toast-top-right {
+  top: 1rem !important;
+  right: 1rem !important;
+  z-index: 9999 !important;  /* Make sure it’s above navbar */
+  position: fixed !important;
+}

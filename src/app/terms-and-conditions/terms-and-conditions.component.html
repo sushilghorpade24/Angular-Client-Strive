@@ -1,0 +1,84 @@
+<!-- <div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-4 text-primary">Terms & Conditions</h1>
+    <p class="lead text-muted">Please read these terms carefully before using Strive.</p>
+  </div>
+
+  <div class="card p-5 shadow-lg border-0 rounded-4">
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">1. Acceptance of Terms</h3>
+      <p class="fs-5 text-muted">
+        By accessing or using our platform, you agree to comply with and be bound by these terms. If you do not agree,
+        please do not use the service.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">2. Use of the Platform</h3>
+      <p class="fs-5 text-muted">
+        You agree to use the platform only for lawful purposes. Any unauthorized use, including but not limited to
+        unauthorized access or misuse of data, is strictly prohibited.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">3. Intellectual Property</h3>
+      <p class="fs-5 text-muted">
+        All content, trademarks, and intellectual property on Strive are owned by us or our partners. You may not copy,
+        modify, or distribute any part of the platform without permission.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">4. Account Responsibility</h3>
+      <p class="fs-5 text-muted">
+        You are responsible for maintaining the confidentiality of your login credentials and for all activities that
+        occur under your account.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">5. Termination</h3>
+      <p class="fs-5 text-muted">
+        We reserve the right to suspend or terminate your access to the platform at any time for violations of these
+        terms or other applicable laws.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">6. Limitation of Liability</h3>
+      <p class="fs-5 text-muted">
+        We shall not be liable for any direct or indirect damages arising from the use or inability to use the platform.
+        Use the service at your own risk.
+      </p>
+    </div>
+
+    <div class="mb-5">
+      <h3 class="fw-semibold text-dark">7. Changes to Terms</h3>
+      <p class="fs-5 text-muted">
+        We may update these terms from time to time. Continued use of the platform means you accept the modified terms.
+        Check this page regularly.
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h3 class="fw-semibold text-dark">8. Contact Us</h3>
+      <p class="fs-5 text-muted">
+        For any questions or concerns, please contact us at: <strong>terms&#64;strive.com</strong>
+      </p>
+    </div>
+  </div>
+</div> -->
+<div class="terms-wrapper bg-light-blue min-vh-100 py-5 px-3 px-md-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-4 text-gradient">Terms & Conditions</h1>
+    <p class="lead text-muted">Please read these terms carefully before using <strong>Strive</strong>.</p>
+  </div>
+
+  <div class="card terms-card p-5 shadow-lg border-0 rounded-4 bg-white">
+    <div class="mb-5" *ngFor="let section of termsSections; let i = index">
+      <h3 class="fw-semibold text-dark section-title">{{ i + 1 }}. {{ section.title }}</h3>
+      <p class="fs-5 text-muted transition-hover">{{ section.content }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container-fluid px-4 mt-4">
+
+    <!-- Header -->
+
+
+    <!-- Stats & Add Button -->
+    <!-- <div class="card bg-gradient-purple text-white p-3 mb-4 shadow-sm rounded-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Total Clients Project</h5>
+                 <h3>{{ projectList.length }}</h3> 
+            </div>
+            <div>
+                <button class="btn btn-light fw-semibold text-primary" data-bs-toggle="modal"
+                    data-bs-target="#addClientModal">
+                    + Add Project
+                </button>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Search -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-dark">Client Project Management</h2>
+        <div>
+            <input type="text" placeholder="Search" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    <app-tabs [tabs]="['Employees', 'Meetings','Change Log','Payment']" [activeTab]="currentTab"
+        (tabChange)="handleTabChange($event)"></app-tabs>
+
+    
+
+    @if(currentTab=='Project Details'){
+    <div class="row g-4">
+        <app-project-form></app-project-form>
+    </div>
+    }@else if (currentTab=='Employees') {
+    <div class="row g-4">
+        <app-project-employee [projectId]="projectId"></app-project-employee>
+    </div>
+    } @else if (currentTab=="Meetings") {
+    <div class="row g-4">
+        <app-project-meetings [projectId]="projectId"></app-project-meetings>
+    </div>
+    }@else if(currentTab=="Change Log"){
+    <div class="row g-4">
+        <app-project-change [projectId]="projectId"></app-project-change>
+    </div>
+    }@else{
+    <div class="row g-4">
+        <app-project-payment  [projectId]="projectId"></app-project-payment>
+    </div>
+    }

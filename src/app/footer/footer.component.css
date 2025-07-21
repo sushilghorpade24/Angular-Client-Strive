@@ -1,0 +1,60 @@
+/* Footer Styling */
+footer.footer {
+  background-color: #182848;
+  color: #ffffff;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Footer Links */
+.footer-link {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffc107;
+  text-decoration: underline;
+}
+
+/* Footer Icons */
+footer .bi {
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+footer .bi:hover {
+  color: #ffc107;
+}
+
+/* Input and Textarea in Footer */
+footer textarea,
+footer input {
+  background-color: #212529;
+  color: #ffffff;
+  border: 1px solid #444;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 100%;
+}
+
+footer textarea::placeholder,
+footer input::placeholder {
+  color: #888;
+}
+
+/* Contact Us Button */
+footer .btn-footer {
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+}
+
+footer .btn-footer:hover {
+  background-color: #0b5ed7;
+}

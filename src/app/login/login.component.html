@@ -1,0 +1,45 @@
+<div class="auth-container">
+  <div class="form-wrapper">
+    <div class="form-side">
+      <div class="form-header">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="form-icon"
+          style="width: 40px; height: 40px; margin: auto; display: block; margin-bottom: 10px;">
+          <path
+            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+        </svg>
+        <h1 class="form-title">Admin Login</h1>
+        <p class="form-subtitle">Employee Management System</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">UserName</label>
+        <input name="emailId" [(ngModel)]="userLogin.username" type="text" class="form-input" placeholder="Enter username"
+          required>
+      </div>
+
+      <div class="form-group password-group">
+        <label class="form-label">Password</label>
+        <input #passwordInput name="password" [(ngModel)]="userLogin.password"  type="password" class="form-input"
+          placeholder="Enter your password" required>
+        <button type="button"   (click)="togglePassword(passwordInput)" class="password-toggle">
+          <svg class="password-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </button>
+      </div>
+     
+
+
+      <div class="form-options">
+        <div class="checkbox-group">
+          <input type="checkbox" class="form-checkbox" id="remember">
+          <label for="remember" class="form-label">Remember me</label>
+        </div>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" (click)="onLogin()" class="submit-btn">Login</button>
+    </div>
+  </div>
+</div>

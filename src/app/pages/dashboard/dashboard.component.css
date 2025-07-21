@@ -1,0 +1,50 @@
+.dashboard-card {
+  min-height: 140px;
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #007bff, #66b2ff);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #6f42c1, #b266ff);
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #fd7e14, #ffb066);
+}
+
+.gradient-teal {
+  background: linear-gradient(135deg, #20c997, #76eec6);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #343a40, #6c757d);
+}
+
+.gradient-welcome {
+  background: linear-gradient(90deg, #182848, #4b6cb7);
+}
+.card {
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+canvas {
+  max-height: 300px;
+}
+.card {
+  background-color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+canvas {
+  max-height: 300px;
+}

@@ -1,0 +1,151 @@
+<app-progressbar [progressValue]="50"></app-progressbar>
+
+<div class="container-fluid px-4 mt-4">
+
+  <!-- Header -->
+
+
+  <!-- Stats & Add Button -->
+  <div class="card bg-gradient-purple text-white p-3 mb-4 shadow-sm rounded-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-1">Total Clients</h5>
+        <h3>{{ clientList.length }}</h3>
+      </div>
+      <div>
+        <button class="btn btn-light fw-semibold text-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+          + Add Client
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold text-dark">Client Management</h2>
+    <div>
+      <input type="text" placeholder="Search" class="form-control d-inline-block w-auto me-2" />
+      <button class="btn btn-primary">Search</button>
+    </div>
+  </div>
+  <app-tabs [tabs]="['Client','Project' ,'Technology', 'Team Members','Payment']" [activeTab]="currentTab"
+    (tabChange)="handleTabChange($event)"></app-tabs>
+
+  <div class="mt-4">
+    <ng-container [ngSwitch]="currentTab">
+      <div *ngSwitchCase="'Client'"> Client Content</div>
+      <div *ngSwitchCase="'Project'">Project content</div>
+      <div *ngSwitchCase="'Technology'">Technology content</div>
+      <div *ngSwitchCase="'Team Members'">Team Members content</div>
+      <div *ngSwitchCase="'Change Log'">Payment Content</div>
+    </ng-container>
+  </div>
+  <!-- Client Cards -->
+  @if(currentTab=='Client'){
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let client of clientList">
+      <div class="card emp-card shadow-sm h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="avatar-circle">
+              {{ client.companyName.charAt(0) }}
+            </div>
+            <div>
+              <h5 class="card-title fw-bold text-primary mb-0">{{ client.companyName }}</h5>
+              <small class="text-muted">{{ client.city }}</small>
+            </div>
+          </div>
+          <p><strong>Contact Person:</strong> {{ client.contactPersonName }}</p>
+          <p><strong>Contact:</strong> {{ client.contactNo }}</p>
+          <p><strong>GST:</strong> {{ client.gstNo }}</p>
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" (click)="editClient(client)"
+              data-bs-target="#addClientModal">
+              <i class="bi bi-pencil-fill">Edit</i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="onDeleteClient(client.clientId)">
+              <i class="bi bi-trash-fill">Delete</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }@else if (currentTab=='Project') {
+<div class="row g-4"></div>
+  }@else if (currentTab=='Employee') {
+<div class="row g-4"></div>
+  }@else if (currentTab=='Meetings') {
+<div class="row g-4"></div>
+  }@else if (currentTab=='Change Log') {
+<div class="row g-4"></div>
+  }
+</div>
+
+<!-- Client Modal -->
+<div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="addClientModalLabel">
+          {{ clientForm.value.clientId ? 'Update' : 'Add' }} Client
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form [formGroup]="clientForm" (ngSubmit)="onSubmitClient()">
+        <div class="modal-body custom-modal-body">
+          <div class="row g-3 pb-3">
+            <div class="col-md-6">
+              <label class="form-label">Company Name</label>
+              <input class="form-control" formControlName="companyName" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Contact Person</label>
+              <input class="form-control" formControlName="contactPersonName" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Address</label>
+              <input class="form-control" formControlName="address" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">City</label>
+              <input class="form-control" formControlName="city" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">State</label>
+              <input class="form-control" formControlName="state" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Pincode</label>
+              <input class="form-control" formControlName="pincode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Contact No</label>
+              <input class="form-control" formControlName="contactNo" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">GST No</label>
+              <input class="form-control" formControlName="gstNo" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Registration No</label>
+              <input class="form-control" formControlName="regNo" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Employee Strength</label>
+              <input type="number" class="form-control" formControlName="employeeStrength" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="onRefresh()" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" (click)="onSubmitClient()" class="btn btn-primary" [disabled]="clientForm.invalid">
+            {{ clientForm.value.clientId ? 'Update' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

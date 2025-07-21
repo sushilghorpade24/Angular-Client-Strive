@@ -1,0 +1,38 @@
+/* .text-primary {
+  color: #182848 !important;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+}
+
+.fs-5 {
+  font-size: 1.1rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: #6c757d;
+}
+ */
+.bg-light-blue {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6ecff 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #005bea, #00c6fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.terms-card p.transition-hover {
+  transition: all 0.3s ease;
+}
+
+.terms-card p.transition-hover:hover {
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  border-left: 4px solid #007bff;
+  border-radius: 0.25rem;
+}

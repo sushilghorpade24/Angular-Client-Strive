@@ -1,0 +1,20 @@
+h1, h2, h3 {
+  color: #182848;
+}
+
+.text-primary {
+  color: #182848 !important;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 1.5rem;
+}
+
+.lead {
+  font-size: 1.3rem;
+}
+
+.fs-5 {
+  font-size: 1.1rem;
+}

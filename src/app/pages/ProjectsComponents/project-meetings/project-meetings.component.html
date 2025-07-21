@@ -1,0 +1,151 @@
+<div class="container-fluid px-4 mt-4">
+
+    <!-- Header -->
+
+
+    <!-- Stats & Add Button -->
+    <div class="card bg-gradient-purple text-white p-3 mb-4 shadow-sm rounded-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Total Clients</h5>
+                <h3>{{ meetingList.length }}</h3>
+            </div>
+            <div>
+                <button class="btn btn-light fw-semibold text-primary" data-bs-toggle="modal"
+                    data-bs-target="#addMeetingModal">
+                    + Add Project Meeting
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-dark">Project Meetings Management</h2>
+        <div>
+            <input type="text" placeholder="Search" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    <!-- Client Cards -->
+
+    <div class="row g-4">
+        <div class="col-md-4" *ngFor="let meeting of meetingList">
+            <div class="card emp-card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="avatar-circle">
+                            {{ meeting.companyName.charAt(0) }}
+                        </div>
+                        <small class="text-muted"> {{meeting.companyName}}</small>
+                        <div>
+                            <h5 class="card-title fw-bold text-primary mb-0">{{ meeting.projectName }}</h5>
+                            <small class="text-muted">Client Name:{{ meeting.clientPersonNames }}</small>
+                            <p><strong>Title:</strong> {{ meeting.meetingTitle }}</p>
+                        </div>
+                    </div>
+                    <p><strong>Lead Employee Name:</strong> {{ meeting.leadByEmployeName }}</p>
+                    <p><strong>Client Name:</strong> {{ meeting.clientPersonNames }}</p>
+                    <p><strong>Start Time:</strong> {{ meeting.startTime }}</p>
+                    <p><strong>End Time:</strong> {{ meeting.endTime }}</p>
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-sm btn-warning" (click)="editMeeting(meeting)" data-bs-toggle="modal"
+                            data-bs-target="#addMeetingModal">
+                            <i class="bi bi-pencil-fill">Edit</i>
+                        </button>
+
+                        <button class="btn btn-sm btn-danger" (click)="onDeleteMetting(meeting.projectMeetingId)">
+                            <i class="bi bi-trash-fill">Delete</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="addMeetingModal" tabindex="-1" aria-labelledby="addMeetingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="addMeetingModalLabel">
+                    {{ meetingForm.value.projectMeetingId ? 'Update' : 'Add' }} Meeting
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form [formGroup]="meetingForm" (ngSubmit)="onSubmitMeeting()">
+                <div class="modal-body custom-modal-body">
+                    <div class="row g-3 pb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Meeting Title</label>
+                            <input class="form-control" formControlName="meetingTitle" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Project ID</label>
+                            <input class="form-control disabled" formControlName="projectId" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Meeting Lead (Emp ID)</label>
+                            <!-- <input class="form-control" formControlName="meetingLeadByEmpId" /> -->
+                            <select class="form-select" formControlName="meetingLeadByEmpId">
+                                <option *ngFor="let emp of employeeProjectList" value="{{emp.empId}}">
+                                    {{emp.empName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Meeting Date</label>
+                            <input type="date" class="form-control" formControlName="meetingDate" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Start Time</label>
+                            <input type="time" class="form-control" formControlName="startTime" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">End Time</label>
+                            <input type="time" class="form-control" formControlName="endTime" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Meeting Medium</label>
+                            <input class="form-control" formControlName="meetingMedium" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Recording Available</label>
+                            <select class="form-select" formControlName="isRecordingAvailable">
+                                <option [value]="true">Yes</option>
+                                <option [value]="false">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Recording URL</label>
+                            <input class="form-control" formControlName="recordingUrl" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Meeting Status</label>
+                            <input class="form-control" formControlName="meetingStatus" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Client Person Names</label>
+                            <input  class="form-control" formControlName="clientPersonNames" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Meeting Notes</label>
+                            <textarea class="form-control" rows="3" formControlName="meetingNotes"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" [disabled]="meetingForm.invalid">
+                        {{ meetingForm.value.projectMeetingId ? 'Update' : 'Save' }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

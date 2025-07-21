@@ -1,0 +1,14 @@
+<div class="btn-group shadow-sm" role="group">
+  <button
+    type="button"
+    class="btn"
+    [ngClass]="{
+      'btn-outline-primary': activeTab !== item,
+      'btn-primary text-white': activeTab === item
+    }"
+    *ngFor="let item of tabs; track $index"
+    (click)="onTabSelect(item)"
+  >
+    {{ item }}
+  </button>
+</div>

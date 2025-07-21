@@ -1,0 +1,29 @@
+
+.custom-navbar {
+  background-color: #182848;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.navbar-brand,
+.nav-link {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #ffc107 !important;
+  text-decoration: underline;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.main-content {
+  min-height: 85vh;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}

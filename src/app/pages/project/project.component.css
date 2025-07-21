@@ -1,0 +1,130 @@
+.bg-gradient-purple {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border-radius: 1rem;
+}
+
+.emp-card {
+  border-top: 4px solid #6a11cb;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.emp-card:hover {
+  transform: translateY(-5px);
+}
+
+.avatar-circle {
+  width: 48px;
+  height: 48px;
+  background-color: #6a11cb;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #6a11cb;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-tabs .nav-link {
+  color: #6a11cb;
+}
+
+/* Modal Content */
+.modal-content {
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Header */
+.modal-header.bg-primary {
+  background-color: #182848 !important;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.btn-close-white {
+  filter: brightness(0) invert(1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body .form-control,
+.modal-body .form-select {
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-body .form-control:focus,
+.modal-body .form-select:focus {
+  border-color: #182848;
+  box-shadow: 0 0 0 0.2rem rgba(24, 40, 72, 0.25);
+}
+
+.modal-body .form-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+
+.modal-footer .btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #14325d;
+  transform: scale(1.02);
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #adb5bd;
+  transform: scale(1.02);
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 1rem auto;
+  }
+
+  .modal-content {
+    border-radius: 0.5rem;
+  }
+}
+/* Slightly increase modal height */
+.modal-dialog-scrollable {
+  max-height: 90vh;
+}
+
+/* Ensure scrolling happens inside body without hiding buttons */
+.custom-modal-body {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-bottom: 1rem; /* Prevent footer overlap */
+}
+.modal-dialog-scrollable .modal-body {
+  max-height: 70vh; /* Adjust as needed */
+  overflow-y: auto;
+}
